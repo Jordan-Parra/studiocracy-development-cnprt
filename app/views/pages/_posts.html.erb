@@ -1,0 +1,59 @@
+<% @posts.in_groups_of(3, false).each do |group| %>
+
+<div class='row'>
+	<% group.each do |post| %>
+	<div class='col-md-4 center content_box'>
+		<div class="post box" id="<%= post.id %>">
+
+			<!-- Image -->
+			<div class='image_wrapper gallery_image'>
+				<%= image_tag(post.image.url(:large)) %>
+			</div>
+
+			<!-- Overlay -->
+			<div class="contenthover">
+					<!-- Title -->
+					<h3><%= link_to post.title, post_path(post), class: 'post_title' %></h3>
+					<!-- Creator -->
+					<%= link_to post.user.fullname, post_path(post), class: 'artist_name' %>
+					<br/><br/>
+                    <!-- Price -->
+					<%= number_to_currency(post.price, :unit => "$") %>
+			</div>
+			
+            <script>
+				$(".image_wrapper").contenthover({
+					overlay_background:'#000',
+					overlay_opacity:0.8
+				});
+			</script>
+			
+
+			<!-- Post contents -->
+			<div class='content-text'>
+
+				<!-- Description -->
+				<!--
+				<% if post.content_md != nil %>
+				<div class='center'><%= sanitize(post.content_md) %></div>
+				<% end %>
+				-->
+				<!-- Comments -->
+				<div class='comments'>
+				  <%= link_to image_tag('comments.png') + post.comments.count.to_s, post, class: 'center' %>
+				  </div>
+				    <!-- Votes-->
+				    <div class='votes'>
+					    <%= post.post_votes.where(:state => 1).count %>
+					    <% if current_user && current_user.post_votes.where(:post_id => post.id, :state => 1).present? %>
+					      <%= link_to image_tag('upvote.png'), post_votes_path(:post_vote => {:post_id => post.id, :state => 0}), :method => :post %>
+					    <% else %>
+					      <%= link_to image_tag('icons/grey_triangle.png'), post_votes_path(:post_vote => {:post_id => post.id, :state => 1}), :method => :post %>
+					    <% end %>
+				    </div>
+			  </div>
+		</div>
+	</div>
+	<% end %>
+</div>
+<% end %>

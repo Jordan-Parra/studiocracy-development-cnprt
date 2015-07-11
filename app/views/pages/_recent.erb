@@ -1,0 +1,43 @@
+<div class="row">
+  <div class='col-md-5'>
+    <h3 class="content-header letter-spaced">RECENT</h3>
+  </div>
+</div>
+
+<div class="row recent">
+  <% @recent.each do |post| %>
+      <div class='col-md-3 center content_box'>
+        <div class="post box recentpost" id="<%= post.id %>">
+
+          <!-- Image -->
+          <div class='recent_image_wrapper gallery_image'>
+            <%= image_tag(post.image.url(:large)) %>
+          </div>
+
+          <!-- Overlay -->
+          <div class="contenthover">
+            <!-- Title -->
+            <h3><%= link_to post.title, post_path(post), class: 'post_title' %></h3>
+            <!-- Creator -->
+            <%= link_to post.user.fullname, post_path(post), class: 'artist_name' %>
+            <br/><br/>
+            <%= number_to_currency(post.price, :unit => "$") %>
+          </div>
+
+          <script>
+              $(".recent_image_wrapper").contenthover({
+                  overlay_background: '#000',
+                  overlay_opacity: 0.8
+              });
+          </script>
+
+
+          <!-- Post contents -->
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 top-border"></div>
+</div>

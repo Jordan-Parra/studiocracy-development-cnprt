@@ -1,0 +1,10 @@
+$("<%=j render(:partial => 'posts', :object => @posts) %>")
+  .appendTo($("#content"));
+
+// Update pagination link
+<% if @posts.last_page? %>
+  $('.pagination').html("No more posts! :(");
+<% else %>
+  $('.pagination')
+    .html("<%=j link_to_next_page(@posts, 'More posts', :remote => true) %>");
+<% end %>

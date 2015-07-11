@@ -1,0 +1,45 @@
+<%= form_for(@post) do |f| %>
+ <% if @post.errors.any? %>
+ <div id="error_explanation">
+  <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+    <div><%= msg %></div>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<% end %>
+
+<div class="col-lg-6 col-lg-offset-3 submission-form">
+  <div role="form">
+    <%= form_for(@post) do |f| %>
+    <%= f.label :image, 'Upload a Photo of Your Work:' %>
+    <%= f.file_field :image %><br />
+    <%= f.label :title, "Artwork Title:" %>
+    <%= f.text_field :title %><br />
+    <%= f.label :content_md, "Description:" %>
+    <%= f.text_field :content_md %><br />
+    <%= f.label :medium, "Medium:" %>
+    <%= f.select(:medium, options_for_select(['Drawing','Installation','New/Mixed Media', 'Painting','Photography','Printmaking','Sculpture'])) %>
+    <br />
+    <%= f.label :year_created, "Year Created:" %>
+    <%= f.text_field :year_created %><br />
+    <%= f.label :dimension_height, "Dimension (height):"  %>
+    <%= f.text_field :dimension_height %><br />
+    <%= f.label :dimension_width, "Dimension (width):"  %>
+    <%= f.text_field :dimension_width %><br />
+    <%= f.label :measurement, "Dimension Measurement:"  %>
+    <%= f.select(:measurement, options_for_select(%w[in ft])) %><br />
+    <%= f.label :weight_in_pounds, "Weight (lbs):"  %>
+    <%= f.text_field :weight_in_pounds %><br />
+    <%= f.label :price, "Price:"  %>
+    <%= f.text_field :price %><br />
+    <%= f.label :quantity, "Quantity:"  %>
+    <%= f.text_field :quantity %><br />
+
+    <div class="actions">
+      <%= f.submit "Submit" %>
+    </div>
+    <% end %>
+  </div>
+</div>

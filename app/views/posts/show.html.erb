@@ -1,0 +1,200 @@
+<div class="row">
+  <div class="col-sm-6">
+    <h4 class="letter-spaced post-show-head"><%= @post.user.fullname.upcase %>
+      <% if @post.user.city != nil && @post.user.state != nil %>
+          // <%= @post.user.city.upcase %>, <%= @post.user.state.upcase %>
+      <% end %>
+    </h4>
+  </div>
+</div>
+
+<div class="row listing post-listing shadow">
+  <div class="col-md-8 col-sm-12">
+    <div id="gallery" style="display:none;">
+
+      <img alt="Image 1 Title" src=<%= @post.image.url(:large) %>
+              data-image= <%= @post.image.url(:large) %>
+           data-description=<%= @post.content_md %>>
+    </div>
+
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#gallery").unitegallery();
+        });
+    </script>
+  </div>
+
+  <div class="col-md-4 col-sm-12 post-header">
+    <h3><%= @post.title.upcase %></h3>
+    <h4 class="open-sans"><%= @post.user.fullname %></h4><br/>
+
+    <!-- Insert icons -->
+    <div class="row icons-row">
+      <div class='votes post-votes'>
+        <%= @post.post_votes.where(:state => 1).count %>
+        <% if current_user && current_user.post_votes.where(:post_id => @post.id, :state => 1).present? %>
+            <%= link_to image_tag('upvote.png'), post_votes_path(:post_vote => {:post_id => @post.id, :state => 0}), :method => :post %>
+        <% else %>
+            <%= link_to image_tag('icons/grey_triangle.png'), post_votes_path(:post_vote => {:post_id => @post.id, :state => 1}), :method => :post %>
+        <% end %>
+      </div>
+    </div>
+
+    <ul class="nav nav-tabs responsive" id="myTab">
+      <li class="active"><a href="#details">Details</a></li>
+      <li><a href="#shipping">Shipping</a></li>
+      <li><a href="#description">Description</a></li>
+    </ul>
+
+    <div class="tab-content responsive">
+      <div class="tab-pane active" id="details">
+        <section id="section-1">
+
+          <% if @post.user.city != nil && @post.user.state != nil %>
+              <p>Location: <%= @post.user.city.upcase %>, <%= @post.user.state.upcase %></p>
+          <% end %>
+          <p>Price: <span class="post-data"><%= number_to_currency(@post.price, :unit => "$") %></span></p>
+          <p>Medium: <span class="post-data"> <%= @post.medium %></span></p>
+          <p>Quantity: <span class="post-data"> <%= @post.quantity %></span></p>
+          <p>Dimensions: <span class="post-data"> <%= @post.dimension_height %> x  <%= @post.dimension_width %> <%= @post.measurement %>.</span></p>
+          <p>Weight: <span class="post-data"><%= @post.weight_in_pounds %> lbs</span></p>
+
+          <!-- Contact modal -->
+          <div id="contact-button" class="shadow"><button type="button"  data-toggle="modal" data-target="#contact-modal">
+            Contact <span class="pink"><%= @post.user.first_name %></span></button></div>
+          <!-- Modal -->
+          <div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Contact <span class="pink"><%= @post.user.fullname %></span></h4>
+                </div>
+                <div class="modal-body">
+                  <textarea class="contact-message"></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stripe don't touch -->
+          <div id="stripe-button">
+            <%= form_tag charges_path do %>
+                <input type='hidden' name='post_id' value='<%= @post.id %>'/>
+
+                <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_4YYGj3Ei4fRofFexQZH0Nfgc"
+                data-image="https://s3.amazonaws.com/stripe-uploads/acct_14PR9oDe1dLPSxg5merchant-icon-1427505020708-smockLogoBlack.png"
+                data-name="Studiocracy"
+                data-description='<%= number_to_currency(@post.price, :unit => "$") %> for "<%= @post.title %>" by <%= @post.user.fullname %>'
+                data-amount="'@post.price'">
+                </script>
+            <% end %>
+          </div>
+        </section>
+      </div>
+      <div class="tab-pane" id="shipping">
+
+      </div>
+      <div class="tab-pane" id="description">
+        <!-- tab3 -->
+        <p>
+          <%= @post.content_md %>
+        </p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+        (function($) {
+            $('#myTab a').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+
+            fakewaffle.responsiveTabs(['xs', 'sm']);
+        })(jQuery);
+    </script>
+
+
+  </div>
+</div>
+
+<!--More from artist carousel-->
+<div class="more-from-artist row">
+  <!--.jcarousel JQuery Carousel Plug-in-->
+  <div class="wrapper shadow">
+    <div class="jcarousel-wrapper">
+      <h4 class="carousel-header letter-spaced">MORE FROM THIS ARTIST</h4>
+
+      <div class="jcarousel">
+        <ul>
+          <% @post.user.posts.each do |post| %>
+              <% if post.id != @post.id %>
+                  <li>
+                    <div class="post carousel-box" id="<%= post.id %>">
+
+                      <!-- Image -->
+                      <div class='carousel-image-wrapper'>
+                        <%= link_to image_tag(post.image.url(:large)), post_path(post) %>
+                      </div>
+
+                      <!-- Overlay -->
+                      <div class="contenthover">
+                        <!-- Title -->
+                        <h3><%= link_to post.title, post_path(post), class: 'post_title' %></h3>
+                        <!-- Creator -->
+                        <%= link_to post.user.fullname, post_path(post), class: 'artist_name' %>
+                        <br/><br/>
+                        <%= number_to_currency(post.price, :unit => "$") %>
+                      </div>
+                    </div>
+                  </li>
+              <% end %>
+          <% end %>
+        </ul>
+      </div>
+
+      <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+      <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+      <p class="jcarousel-pagination"></p>
+    </div>
+  </div>
+</div>
+
+<div class="comment row">
+  <%= form_for(@comment) do |f| %>
+      <% if @comment.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+            <ul>
+              <% @comment.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <h2>Comments:</h2>
+
+      <div class="field">
+        <%= f.text_area :message, :placeholder => "Add a comment" %>
+        <%= f.hidden_field :post_id, value: @post.id %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+  <% end %>
+  <div>
+    <%= render :partial => 'comments', :object => @comments %>
+  </div>
+</div>
+</div>

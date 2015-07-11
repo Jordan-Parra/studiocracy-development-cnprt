@@ -1,0 +1,37 @@
+      <span><%= @user.fullname %></span><br />
+      <span>From <%= @user.city %>, <%= @user.state %></span><br />
+      <span>Bio: <%= @user.bio %></span><br />
+
+      <% @user.posts.in_groups_of(3, false).each do |group| %>
+      <div class='row'>
+      	<% group.each do |post| %>
+      	<div class='col-md-4 center content_box'>
+      		<h3><%= link_to post.title, post_path(post), class: 'post_title' %></h3>
+      		<div class='image_wrapper'>
+      			<%= link_to image_tag(post.image.url(:large)), post_path(post), class: "gallery_image" %>
+      		</div>
+      		<div class='content-text'>
+      			<%= link_to "By " + post.user.fullname, post_path(post), class: 'artist_name' %>
+      			<% if post.content_md != nil %>
+      			<div class='center'><%= sanitize(post.content_md) %></div>
+      			<% end %>
+      			<%= link_to "Comments: " + post.comments.count.to_s, post, class: 'center' %>
+
+<!--	<% if current_user && current_user.votes.where(:post_id => post.id, :up => false).present? %>
+		*
+		<% else %>
+		<%= link_to "-", votes_path(:vote => {:post_id => post.id, :up => false}), :method => :post %>
+		<% end %>-->
+		<p class='center'>Patrons:
+			<%= post.votes.where(:up => true).count %>
+			<% if current_user && current_user.votes.where(:post_id => post.id, :up => true).present? %>
+			<%= link_to "✓", votes_path(:vote => {:post_id => post.id, :up => false}), :method => :post %>
+			<% else %>
+			<%= link_to "+", votes_path(:vote => {:post_id => post.id, :up => true}), :method => :post %>
+			<% end %>
+		</p>
+	</div>
+</div>
+<% end %>
+</div>
+<% end %>

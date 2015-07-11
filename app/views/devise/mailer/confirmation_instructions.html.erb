@@ -1,0 +1,12 @@
+<p>Welcome!</p>
+
+<p>You need to confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token) %></p>
+<br/>
+
+<p>
+  Thank you,<br/><br/>
+  Julian<br/>
+  <%= link_to "www.studiocracy.com", "http://studiocracy.com" %>
+</p>

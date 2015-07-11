@@ -1,0 +1,14 @@
+<% title("Home Page") %>
+
+<div id="content">
+  <%= render :partial => 'recent', :object => @recent %>
+  <div class="row">
+    <div class='col-md-5'>
+      <h3 class="content-header letter-spaced">TOP</h3>
+    </div>
+  </div>
+  <%= render :partial => 'posts', :object => @posts %>
+</div>
+<p class="pagination">
+  <%= link_to_next_page(@posts, 'More posts', :remote => true) %>
+</p>

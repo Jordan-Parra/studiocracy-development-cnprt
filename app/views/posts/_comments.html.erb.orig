@@ -1,0 +1,39 @@
+<% comment_array = @post.comments.sort_by {|comment| comment.votecount }.reverse %>
+<% comment_array.each do |comment| %>
+  <p><%= comment.fullname %> on <%= l(comment.created_at, format: '%B, %d %Y') %>
+    <div class='votes'>
+<<<<<<< HEAD
+      <%= comment.up_minus_down %>
+      <!--Upvoting-->
+=======
+      <%= comment.comment_votes.where(:state => 1).count - comment.comment_votes.where(:state => -1).count %>
+>>>>>>> origin/master
+      <% if current_user && current_user.comment_votes.where(:comment_id => comment.id, :state => 1).present? %>
+        <%= link_to image_tag('upvote.png'), comment_votes_path(:comment_vote => {:comment_id => comment.id, :state => 0}), :method => :post %>
+        <%= link_to image_tag('icons/grey_triangle_down.png'), comment_votes_path(:comment_vote => {:comment_id => comment.id, :state => -1}), :method=> :post %>
+      <% elsif current_user && current_user.comment_votes.where(:comment_id => comment.id, :state => -1).present? %>
+        <%= link_to image_tag('icons/grey_triangle.png'), comment_votes_path(:comment_vote => {:comment_id => comment.id, :state => 1}), :method => :post %>
+        <%= link_to image_tag('downvote.png'), comment_votes_path(:comment_vote => {:comment_id => comment.id, :state => 0}), :method => :post %>
+      <% else %>
+        <%= link_to image_tag('icons/grey_triangle.png'), comment_votes_path(:comment_vote => {:comment_id => comment.id, :state => 1}), :method => :post %>
+        <%= link_to image_tag('icons/grey_triangle_down.png'), comment_votes_path(:comment_vote => {:comment_id => comment.id, :state => -1}), :method => :post %>
+      <% end %>
+      <!--Downvoting-->
+      <!--TODO: Add downvote icons-->
+      <% if current_user && current_user.comment_votes.where(:comment_id => comment.id, :state => -1).present? %>
+          <%= link_to image_tag('upvote.png'), comment_votes_path(:comment_vote => {:comment_id => comment.id, :state => 0}), :method => :post %>
+      <% else %>
+          <%= link_to image_tag('icons/grey_triangle.png'), comment_votes_path(:comment_vote => {:comment_id => comment.id, :state => -1}), :method => :post %>
+      <% end %>
+    </div>
+  </p>
+
+  <blockquote>
+    <p><%= comment.message %></p>
+  </blockquote>
+	
+  <!--<button class="reply">reply</button>
+  <div class="reply_box"></div>-->
+
+<% end %>
+

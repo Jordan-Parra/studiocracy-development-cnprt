@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title><%= @title || "Studiocracy" %></title>
+  <%= favicon_link_tag '/favicon.ico' %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var $_Tawk_API={},$_Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5573f6536381c90e682dd141/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+<!--End of Tawk.to Script-->
+<body>
+  <div id="wrap">
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 text-center">
+          <%= render 'layouts/messages' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="bodyGrid">
+          <%= yield %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <%= render 'layouts/footer' %>
+
+</body>
+</html>
