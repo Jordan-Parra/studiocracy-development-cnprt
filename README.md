@@ -42,3 +42,4 @@ REQUIREMENTS
 
 -Utilize Ruby on Rails, Bootstrap, JQuery/JavaScript, HTML, CSS, Postgres
 
+[Mock up 1](http://i.imgur.com/DMRALEs.jpg)
