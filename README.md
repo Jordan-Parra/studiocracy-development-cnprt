@@ -40,4 +40,5 @@ REQUIREMENTS
 
 -Determine whether the user is an artist or a non-artist and gather only relevant information based on this choice.
 
+-Utilize Ruby on Rails, Bootstrap, JQuery/JavaScript, HTML, CSS, Postgres
 
