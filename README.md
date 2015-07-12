@@ -32,7 +32,12 @@ Daniel Tkachenko -- dtkachen@asu.edu
 
 REQUIREMENTS
 ------------
-To capture user information and use that information to implement a portfolio for the user.
+-To capture user information and use that information to implement a portfolio for the user.
 
+-Track user engagement via voting system to help artists develop their careers.
+
+-Register via email or through Facebook.
+
+-Determine whether the user is an artist or a non-artist and gather only relevant information based on this choice.
 
 
