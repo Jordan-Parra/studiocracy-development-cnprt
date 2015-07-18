@@ -1,37 +1,39 @@
-[![Stories in Ready](https://badge.waffle.io/asu-cis440-summer/studiocracy-development-cnprt.png?label=ready&title=Ready)](https://waffle.io/asu-cis440-summer/studiocracy-development-cnprt)
-# studiocracy-development-cnprt
+# Studiocracy-Development-CNPRT
+------------------------------
 
-THE PURPOSE
-------------
+## Purpose
+
 The ultimate goal for the team is to complete the assigned development project based on the requirements of Studiocracy. We have been tasked with creating an intuitive process for new users to register with Studiocracy. The team will design the process from the point where the user clicks "Sign up" to the point where the user has completed their account registration with an active profile. 
 
-ABOUT STUDIOCRACY
-------------
+## About Studiocracy
+
 Studiocracy is Reddit meets Etsy for local art. The company addresses the difficulty emerging artists have with getting their work noticed by letting them bypass the gallery system and interact directly with their community. Unlike other art retailers, Studiocracy is a social network first and a marketplace second. The website also tracks user engagement through a community voting system and use that data to help artists develop their careers and complete more sales without the pressure of having to treat their studio like a business.
 
-FUTURE FEATURES
-------------
+## Future Features
+
 The most important aspect of this process will be the portfolio generator for artists. All artists registered with Studiocracy must have an updated portfolio with relevant information by the time they complete their registration. The registrations team will design the onboarding process, as well as implement and modify designs for the final portfolio editor and view. Eventually, the portfolio generator will be able to dynamically generate portfolios based on available information.
 
-BACKLOG
-------------
--To capture user information and use that information to implement a portfolio for the user
+## Technology Stack
 
--Track user engagement via voting system to help artists develop their careers
+| Name | Version |
+| ---- | ------- |
+| Linux | ? |
+| Unicorn | ? |
+| PostgreSQL | ? |
+| Ruby | 2.2.1 |
+| Rails | 4.2.0 |
 
--Register via email or through Facebook
+## Task Board
+[![Stories in Ready](https://badge.waffle.io/asu-cis440-summer/studiocracy-development-cnprt.png?label=ready&title=Ready)](https://waffle.io/asu-cis440-summer/studiocracy-development-cnprt)
+[![Stories in In-Progess](https://badge.waffle.io/asu-cis440-summer/studiocracy-development-cnprt.png?label=in+progress&title=In-Progress)](https://waffle.io/asu-cis440-summer/studiocracy-development-cnprt)
+[![Stories in Ongoing](https://badge.waffle.io/asu-cis440-summer/studiocracy-development-cnprt.png?label=ongoing&title=Ongoing)](https://waffle.io/asu-cis440-summer/studiocracy-development-cnprt)
 
--Determine whether the user is an artist or a non-artist and gather only relevant information based on this choice
+## About the Team
 
--Utilize Ruby on Rails, Bootstrap, JQuery/JavaScript, HTML, CSS, Postgres
-
-ABOUT THE TEAM
-------------
-Dan Cannan - Daniel.Cannan@asu.edu
-Jeff Nguyen - jcnguye2@asu.edu
-Jordan Parra - Jordan.Parra@asu.edu
-Colin Ruane - Colin.Ruane@asu.edu
-Daniel Tkachenko - dtkachen@asu.edu
-
-MOCK-UP
-------------
+| Name | Role | Github |
+| ---- | ---- | ------ |
+| Jordan Parra | Product Owner | [@japarra](https://github.com/japarra) |
+| Jeff Nguyen | Scrum Master | [@jcnguye2](https://github.com/jcnguye2) |
+| Dan Cannan | Team Member | [@dcannan](https://github.com/dcannan) |
+| Colin Ruane | Team Member | [@colinruane](https://github.com/colinruane) |
+| Daniel Tkachenko | Team Member | [@dannbaman](https://github.com/dannbaman) |
