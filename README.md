@@ -1,8 +1,6 @@
 # studiocracy-development-cnprt
 ------------------------------
 
-[![Stories in Ready](https://badge.waffle.io/asu-cis440-summer/studiocracy-development-cnprt.png?label=ready&title=Ready)](https://waffle.io/asu-cis440-summer/studiocracy-development-cnprt)
-
 ## THE PURPOSE
 
 The ultimate goal for the team is to complete the assigned development project based on the requirements of Studiocracy. We have been tasked with creating an intuitive process for new users to register with Studiocracy. The team will design the process from the point where the user clicks "Sign up" to the point where the user has completed their account registration with an active profile. 
@@ -26,6 +24,10 @@ The most important aspect of this process will be the portfolio generator for ar
 -Determine whether the user is an artist or a non-artist and gather only relevant information based on this choice
 
 -Utilize Ruby on Rails, Bootstrap, JQuery/JavaScript, HTML, CSS, Postgres
+
+## TASK BOARD
+[![Stories in Ready](https://badge.waffle.io/asu-cis440-summer/studiocracy-development-cnprt.png?label=ready&title=Ready)](https://waffle.io/asu-cis440-summer/studiocracy-development-cnprt)
+[![Stories in In-Progess](https://badge.waffle.io/asu-cis440-summer/studiocracy-development-cnprt.png?label=in+progress&title=In-Progress)](https://waffle.io/asu-cis440-summer/studiocracy-development-cnprt)
 
 ## ABOUT THE TEAM
 
