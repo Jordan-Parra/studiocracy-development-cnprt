@@ -23,6 +23,10 @@ The most important aspect of this process will be the portfolio generator for ar
 | Ruby | 2.2.1 |
 | Rails | 4.2.0 |
 
+## Environment Setup
+
+Refer to our [wiki](https://github.com/asu-cis440-summer/studiocracy-development-cnprt/wiki/Environment-Setup).
+
 ## Task Board
 [![Stories in Ready](https://badge.waffle.io/asu-cis440-summer/studiocracy-development-cnprt.png?label=ready&title=Ready)](https://waffle.io/asu-cis440-summer/studiocracy-development-cnprt)
 [![Stories in In-Progess](https://badge.waffle.io/asu-cis440-summer/studiocracy-development-cnprt.png?label=in+progress&title=In-Progress)](https://waffle.io/asu-cis440-summer/studiocracy-development-cnprt)
